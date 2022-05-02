@@ -1,0 +1,38 @@
+//colors
+$black : #000000;
+$silver: #C0C0C0;
+$gray : #808080;
+$white : #FFFFFF;
+$maroon : #800000;
+$red : #FF0000;
+$purple : #800080;
+$fuchsia : #FF00FF;
+$green : #008000;
+$lime : #00FF00;
+$olive : #808000;
+$yellow : #FFFF00;
+$navy : #000080;
+$blue : #0000FF;
+$teal : #008080;
+$aqua : #00FFFF;
+$orange : #FFA500;
+$gold : #FFD700;
+
+$link-primary: $orange;
+$link-secondary: $blue;
+$link-tertiary: $gray;
+
+//sizes
+$bth-height: 48px;
+$btn-width: 250px;
+
+//borders
+$btn-border-secondary: 1px solid $blue;
+
+//radius
+$radius-button: 5px;
+$radius-tab: 5px;
+
+//gradients
+// $background-tab-linear-gradient: linear-gradient(270deg, $white 0%, $silver 100%);
+$linear-gradient-white-silver: linear-gradient(270deg, $white 0%, $silver 100%);

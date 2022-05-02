@@ -1,1 +1,1 @@
-# start-angular-material-tests-NgRx
+# start-angular-material-NgRx

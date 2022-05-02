@@ -1,0 +1,40 @@
+@use '/src/assets/scss/base/variables'as var;
+
+.container {
+    width: 300px;
+    min-height: calc(56.31px + 20px);
+
+    position: relative;
+
+    &>mat-form-field {
+        position: relative;
+
+    }
+
+    ::ng-deep {
+
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+
+        .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid {
+            &:not(.invalid) {
+                .mat-form-field-outline-thick {
+                    color: rgba(0, 0, 0, 0.12);
+                }
+            }
+        }
+    }
+
+    app-form-error {
+        display: block;
+        // position: absolute;
+        // bottom: 0;
+        // left: 5px;
+        padding-left: 5px;
+        font-size: 0.75rem;
+        transform: translateY(-3px);
+        line-height: 0.8rem;
+    }
+
+}
