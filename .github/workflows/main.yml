@@ -4,15 +4,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      ‐ uses: actions/checkout@v2
-      ‐ name: Use Node.js 14.x
+      ‐ uses: actions/checkout@v1
+      ‐ name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node-version }}
 
-      ‐ name: Setup
-        run: npm ci
-
+      ‐ name: Install, build, test
+        run: |
+          npm install
+          npm run build
+          npm test
       ‐ name: Test
         run: |
           npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
