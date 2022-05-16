@@ -1,29 +1,31 @@
-import { ApiEndpointsConstants } from "../constants/api-endpoints.constants";
-import { environment } from "src/environments/environment";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
   TestRequest,
-} from "@angular/common/http/testing";
-import { fakeAsync, getTestBed, TestBed, tick } from "@angular/core/testing";
-import { defer, Observable, of, throwError } from "rxjs";
-import { AuthService } from "src/app/core/services/auth.service";
-import { RequestSignInModel, ResponseSignInModel } from "src/app/shared/models/auth/sign-in";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { ApiEndpointHelper } from "../helpers/api-endpoint.helper";
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { defer } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
+import {
+  RequestSignInModel,
+  ResponseSignInModel,
+} from 'src/app/shared/models/auth/sign-in';
+import { ApiEndpointsConstants } from '../constants/api-endpoints.constants';
+import { ApiEndpointHelper } from '../helpers/api-endpoint.helper';
 
 export function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
 }
 
-fdescribe("AuthService", () => {
+fdescribe('AuthService', () => {
   let service: jasmine.SpyObj<AuthService>;
   let httpController: HttpTestingController;
   let injector: TestBed;
   let httpClient: HttpClient;
   let spy: jasmine.SpyObj<HttpClient>;
   beforeEach(() => {
-    spy = jasmine.createSpyObj("HttpClient", ["get", "post"]);
+    spy = jasmine.createSpyObj('HttpClient', ['get', 'post']);
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -38,29 +40,31 @@ fdescribe("AuthService", () => {
     httpController.verify();
   });
 
-  it("should be created", () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  describe("AuthService > signIn ", () => {
+  describe('AuthService > signIn ', () => {
     const model: RequestSignInModel = {
-      login: "test",
-      password: "123123123",
+      login: 'test',
+      password: '123123123',
     };
 
-    it("should be created signIn", () => {
+    it('should be created signIn', () => {
       expect(service.signIn).toBeTruthy();
     });
 
-    it("should return accessToken", (done: DoneFn) => {
+    it('should return accessToken', (done: DoneFn) => {
       let response: ResponseSignInModel = {
-        accessToken: "Mock token",
+        accessToken: 'Mock token',
       };
 
       service.signIn(model).subscribe({
         next: (res) => {
           console.log(res);
-          expect(res).withContext("service returned accessToken").toEqual(response);
+          expect(res)
+            .withContext('service returned accessToken')
+            .toEqual(response);
         },
         error: fail,
       });
@@ -69,17 +73,17 @@ fdescribe("AuthService", () => {
         ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
       );
 
-      expect(req.request.method).toEqual("POST");
+      expect(req.request.method).toEqual('POST');
 
       req.flush(response);
       done();
     });
 
-    it("should return Error 404", (done: DoneFn) => {
+    it('should return Error 404', (done: DoneFn) => {
       const errorResponse = new HttpErrorResponse({
-        error: "test 404 error",
+        error: 'test 404 error',
         status: 404,
-        statusText: "Not Found",
+        statusText: 'Not Found',
       });
       function asyncError<T>(errorObject: any) {
         return defer(() => Promise.reject(errorObject));
@@ -91,7 +95,7 @@ fdescribe("AuthService", () => {
         next: () => {},
         error: (res) => {
           debugger;
-          expect(res).withContext("service returned error").toEqual({});
+          expect(res).withContext('service returned error').toEqual({});
         },
       });
 
@@ -99,7 +103,7 @@ fdescribe("AuthService", () => {
         ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
       );
 
-      expect(req.request.method).toEqual("POST");
+      expect(req.request.method).toEqual('POST');
 
       req.flush(errorResponse);
       done();

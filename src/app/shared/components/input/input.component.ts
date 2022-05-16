@@ -1,17 +1,23 @@
 import {
-  AfterViewInit, ChangeDetectionStrategy,
-  ChangeDetectorRef, Component,
-  forwardRef, Injector,
-  Input, OnInit
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  Injector,
+  Input,
+  OnInit,
 } from '@angular/core';
 import {
-  AbstractControl, FormControl,
-  NgControl, NG_VALUE_ACCESSOR
+  AbstractControl,
+  FormControl,
+  NgControl,
+  NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { PatternsConstants } from 'src/app/core/constants';
 import { ValueAccessorBase } from './value-accessor';
 
-type InputType = 'text' | 'password' | 'number' | 'email' | 'phone'
+type InputType = 'text' | 'password' | 'number' | 'email' | 'phone';
 
 @Component({
   selector: 'app-input',
@@ -21,12 +27,15 @@ type InputType = 'text' | 'password' | 'number' | 'email' | 'phone'
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputComponent extends ValueAccessorBase<string> implements OnInit, AfterViewInit {
+export class InputComponent
+  extends ValueAccessorBase<string>
+  implements OnInit, AfterViewInit
+{
   @Input() inputAriaLabel?: string;
   @Input() autocomplete?: string;
   @Input() disabled?: boolean;
@@ -39,16 +48,14 @@ export class InputComponent extends ValueAccessorBase<string> implements OnInit,
 
   @Input('type')
   get type(): InputType {
-    return this.inputType
+    return this.inputType;
   }
   set type(value: InputType) {
     this.inputType = value;
   }
 
-
   @Input() styleClasses?: string;
   @Input() label?: string;
-
 
   private ngControl!: NgControl | AbstractControl;
 
@@ -79,16 +86,19 @@ export class InputComponent extends ValueAccessorBase<string> implements OnInit,
       this.ngControl = this.control;
     }
 
-    this.control.valueChanges.subscribe(value => {
+    this.control.valueChanges.subscribe((value) => {
       if (typeof value === 'string') {
-
         if (!value.split(' ')[0]) {
           value = value.split(' ').splice(0, 1).join(' ');
         }
 
         if (this.type === 'phone') {
-          const reg = value.replace(/\D/g, '').match(PatternsConstants.PATTERN_PHONE_NUMBER);
-          value = !reg[2] ? reg[1] : '(' + reg[1] + ') ' + reg[2] + (reg[3] ? '-' + reg[3] : '');
+          const reg = value
+            .replace(/\D/g, '')
+            .match(PatternsConstants.PATTERN_PHONE_NUMBER);
+          value = !reg[2]
+            ? reg[1]
+            : '(' + reg[1] + ') ' + reg[2] + (reg[3] ? '-' + reg[3] : '');
         }
         this.control!.setValue(value, { emitEvent: false });
       }
@@ -102,16 +112,18 @@ export class InputComponent extends ValueAccessorBase<string> implements OnInit,
   }
 
   get typeInput(): InputType {
-    return this.type === 'password' ?
-      this.showPassword ?
-        'text' : this.type : this.type;
+    return this.type === 'password'
+      ? this.showPassword
+        ? 'text'
+        : this.type
+      : this.type;
   }
 
   clearInput(): void {
     if (this.control) {
       this.control.setValue('');
     } else {
-      this.value = ''
+      this.value = '';
     }
   }
 

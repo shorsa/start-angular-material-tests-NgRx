@@ -5,35 +5,33 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import * as errorsActions from 'src/app/core/store/errors/error.actions';
 import {
-  RequestSignInModel, ResponseSignInModel
+  RequestSignInModel,
+  ResponseSignInModel,
 } from 'src/app/shared/models/auth/sign-in';
 import * as authActions from './auth.actions';
-
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private actions$: Actions,
-    private readonly authService: AuthService,
-  ) { }
+    private readonly authService: AuthService
+  ) {}
 
   signIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.signIn),
       switchMap((action: Action & { payload: RequestSignInModel }) => {
-        return this.authService.signIn(action.payload)
-          .pipe(
-            map((data: ResponseSignInModel) => {
-              console.log(data);
+        return this.authService.signIn(action.payload).pipe(
+          map((data: ResponseSignInModel) => {
+            console.log(data);
 
-              return authActions.signInSuccess({ payload: data });
-            }),
-            catchError(error => {
-              return errorsActions.catchErrorEffect(error)
-            })
-          );
+            return authActions.signInSuccess({ payload: data });
+          }),
+          catchError((error) => {
+            return errorsActions.catchErrorEffect(error);
+          })
+        );
       })
-    )
+    );
   });
-
 }

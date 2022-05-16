@@ -1,22 +1,25 @@
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   HttpClientTestingModule,
   HttpTestingController,
   TestRequest,
-} from "@angular/common/http/testing";
-import { TestBed } from "@angular/core/testing";
-import { RequestSignInModel, ResponseSignInModel } from "src/app/shared/models/auth/sign-in";
-import { ApiEndpointsConstants } from "../constants";
-import { ApiEndpointHelper } from "../helpers/api-endpoint.helper";
-import { AuthService } from "./auth.service";
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import {
+  RequestSignInModel,
+  ResponseSignInModel,
+} from 'src/app/shared/models/auth/sign-in';
+import { ApiEndpointsConstants } from '../constants';
+import { ApiEndpointHelper } from '../helpers/api-endpoint.helper';
+import { AuthService } from './auth.service';
 
-fdescribe("AuthService", () => {
+fdescribe('AuthService', () => {
   let service: AuthService;
   let httpTestingController: HttpTestingController;
 
   const requestSignInModel: RequestSignInModel = {
-    login: "login",
-    password: "123123",
+    login: 'login',
+    password: '123123',
   };
 
   beforeEach(() => {
@@ -28,14 +31,14 @@ fdescribe("AuthService", () => {
     httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  it("can load instance", () => {
+  it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 
-  describe("signIn", () => {
-    it("should return accessToken", () => {
+  describe('signIn', () => {
+    it('should return accessToken', () => {
       const responseSignInModelStub: ResponseSignInModel = {
-        accessToken: "token",
+        accessToken: 'token',
       };
 
       service.signIn(requestSignInModel).subscribe({
@@ -51,14 +54,14 @@ fdescribe("AuthService", () => {
         ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
       );
 
-      expect(req.request.method).toEqual("POST");
+      expect(req.request.method).toEqual('POST');
       req.flush(responseSignInModelStub);
     });
 
-    it("should return error", () => {
+    it('should return error', () => {
       const errorResponse = new HttpErrorResponse({
         status: 404,
-        statusText: "Not Found",
+        statusText: 'Not Found',
       });
 
       service.signIn(requestSignInModel).subscribe({
@@ -75,7 +78,7 @@ fdescribe("AuthService", () => {
         ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
       );
 
-      expect(req.request.method).toEqual("POST");
+      expect(req.request.method).toEqual('POST');
 
       req.flush(requestSignInModel, errorResponse);
     });

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
 fdescribe('AppComponent', () => {
@@ -11,15 +10,15 @@ fdescribe('AppComponent', () => {
   beforeEach(() => {
     const toastrServiceStub = () => ({ error: (errorMessage: string) => ({}) });
     const storeStub = () => ({
-      select: () => ({ pipe: () => ({ subscribe: (f:any) => f({}) }) }),
-      dispatch: () => ({})
+      select: () => ({ pipe: () => ({ subscribe: (f: any) => f({}) }) }),
+      dispatch: () => ({}),
     });
     TestBed.configureTestingModule({
       declarations: [AppComponent],
       providers: [
         { provide: ToastrService, useFactory: toastrServiceStub },
-        { provide: Store, useFactory: storeStub }
-      ]
+        { provide: Store, useFactory: storeStub },
+      ],
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

@@ -1,4 +1,10 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
@@ -10,9 +16,12 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private authHelper: AuthenticationHelper,
     private toastrService: ToastrService
-  ) { }
+  ) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error): Observable<never> => {
         console.error(error);
@@ -29,7 +38,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           // this.toastrService.error(error.error);
           return throwError(error);
         }
-      }),
+      })
     );
   }
 }

@@ -1,20 +1,23 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
-import { RequestSignInModel, ResponseSignInModel } from 'src/app/shared/models/auth/sign-in';
-import { ApiEndpointsConstants } from "../constants";
-import { ApiEndpointHelper } from "../helpers/api-endpoint.helper";
-
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import {
+  RequestSignInModel,
+  ResponseSignInModel,
+} from 'src/app/shared/models/auth/sign-in';
+import { ApiEndpointsConstants } from '../constants';
+import { ApiEndpointHelper } from '../helpers/api-endpoint.helper';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  signIn(model: RequestSignInModel): Observable<ResponseSignInModel>{
+  signIn(model: RequestSignInModel): Observable<ResponseSignInModel> {
     return this.httpClient.post<ResponseSignInModel>(
-      ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN), model
+      ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN),
+      model
     );
   }
 

@@ -5,12 +5,13 @@ import { RoutesConstants } from './core/constants';
 const routes: Routes = [
   {
     path: RoutesConstants.AUTH_INDEX,
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: RoutesConstants.INDEX,
     redirectTo: RoutesConstants.AUTH_INDEX,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '**',
@@ -20,6 +21,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

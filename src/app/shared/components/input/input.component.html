@@ -1,41 +1,57 @@
-<div class="container"
+<div
+  class="container"
+  [ngClass]="{
+    invalid: attemptSubmit && control?.invalid
+  }"
+>
+  <mat-form-field
+    [attr.class]="styleClasses"
+    appearance="outline"
     [ngClass]="{
-    'invalid': attemptSubmit && control?.invalid
-    }">
-    <mat-form-field [attr.class]='styleClasses'
-        appearance="outline"
-        [ngClass]="{
-                    'invalid': attemptSubmit && control?.invalid
-                    }">
-        <mat-label *ngIf="label">{{label}}</mat-label>
-        <input *ngIf="control"
-            matInput
-            [type]='inputType'
-            [attr.aria-label]="inputAriaLabel"
-            [attr.autocomplete]="autocomplete"
-            [placeholder]="placeholder ?? '' "
-            [readonly]="readonly"
-            [formControl]='control'>
-        <input *ngIf="!control"
-            matInput
-            [type]='inputType'
-            [attr.aria-label]="inputAriaLabel"
-            [attr.autocomplete]="autocomplete"
-            [placeholder]="placeholder ?? '' "
-            [disabled]="disabled"
-            [readonly]="readonly"
-            [(ngModel)]="value">
-        <mat-icon *ngIf="isClearButton && (value || control?.value)"
-            matSuffix
-            aria-label="Clear"
-            (click)="clearInput()">close</mat-icon>
-        <mat-icon class="pointer"
-            matSuffix
-            aria-label="Password show"
-            *ngIf="isPasswordType"
-            (click)="changeShowPassword()"> {{showPassword ? 'visibility' : 'visibility_off'}}
-        </mat-icon>
-    </mat-form-field>
-    <app-form-error *ngIf="attemptSubmit && control"
-        [control]="control"></app-form-error>
+      invalid: attemptSubmit && control?.invalid
+    }"
+  >
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <input
+      *ngIf="control"
+      matInput
+      [type]="inputType"
+      [attr.aria-label]="inputAriaLabel"
+      [attr.autocomplete]="autocomplete"
+      [placeholder]="placeholder ?? ''"
+      [readonly]="readonly"
+      [formControl]="control"
+    />
+    <input
+      *ngIf="!control"
+      matInput
+      [type]="inputType"
+      [attr.aria-label]="inputAriaLabel"
+      [attr.autocomplete]="autocomplete"
+      [placeholder]="placeholder ?? ''"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      [(ngModel)]="value"
+    />
+    <mat-icon
+      *ngIf="isClearButton && (value || control?.value)"
+      matSuffix
+      aria-label="Clear"
+      (click)="clearInput()"
+      >close</mat-icon
+    >
+    <mat-icon
+      class="pointer"
+      matSuffix
+      aria-label="Password show"
+      *ngIf="isPasswordType"
+      (click)="changeShowPassword()"
+    >
+      {{ showPassword ? 'visibility' : 'visibility_off' }}
+    </mat-icon>
+  </mat-form-field>
+  <app-form-error
+    *ngIf="attemptSubmit && control"
+    [control]="control"
+  ></app-form-error>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageHelper {
   private readonly tokenKey: string = 'TOKEN_DATA_KEY';
@@ -17,7 +17,9 @@ export class LocalStorageHelper {
     return JSON.parse(tokenDataString);
   }
 
-  removeLocalStorageToken(): void { localStorage.removeItem(this.tokenKey); }
+  removeLocalStorageToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
 }
 
 export interface LocalStorageTokenData {

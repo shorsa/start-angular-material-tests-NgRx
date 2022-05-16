@@ -4,6 +4,7 @@ import { AuthState } from '.';
 
 const selectAuth = createFeatureSelector<AuthState>(AppReducersEnum.auth);
 
-export const selectAccessToken = createSelector(selectAuth,
+export const selectAccessToken = createSelector(
+  selectAuth,
   (state: AuthState) => state.accessToken
 );

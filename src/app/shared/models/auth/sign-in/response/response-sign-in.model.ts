@@ -1,3 +1,3 @@
 export interface ResponseSignInModel {
-    accessToken: string
+  accessToken: string;
 }

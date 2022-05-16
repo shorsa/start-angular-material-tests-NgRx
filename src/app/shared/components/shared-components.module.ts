@@ -9,14 +9,10 @@ import { FormErrorComponent } from './form-error/form-error.component';
 import { InputComponent } from './input/input.component';
 @NgModule({
   declarations: [FormErrorComponent],
-  imports: [
-    CommonModule,
-    MatFormFieldModule
-  ],
-  exports: [FormErrorComponent]
+  imports: [CommonModule, MatFormFieldModule],
+  exports: [FormErrorComponent],
 })
-
-export class FormErrorModule { }
+export class FormErrorModule {}
 
 @NgModule({
   declarations: [InputComponent],
@@ -28,9 +24,8 @@ export class FormErrorModule { }
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    FormErrorModule
+    FormErrorModule,
   ],
-  exports: [InputComponent]
+  exports: [InputComponent],
 })
-
-export class InputModule { }
+export class InputModule {}

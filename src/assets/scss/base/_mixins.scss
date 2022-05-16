@@ -1,44 +1,50 @@
-@mixin flex-container($direction: row, $align-items: normal, $justify:normal, $align-content: normal, $wrap: nowrap) {
-    display: flex;
-    flex-direction: $direction;
-    align-items: $align-items;
-    justify-content: $justify;
-    align-content: $align-content;
-    flex-wrap: $wrap;
+@mixin flex-container(
+  $direction: row,
+  $align-items: normal,
+  $justify: normal,
+  $align-content: normal,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify;
+  align-content: $align-content;
+  flex-wrap: $wrap;
 }
 
 @mixin vertical-align {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 @mixin text-shorten($numLines: 1) {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
-    @supports (-webkit-line-clamp: $numLines) {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: initial;
-        display: -webkit-box;
-        -webkit-line-clamp: $numLines;
-        -webkit-box-orient: vertical;
-    }
+  @supports (-webkit-line-clamp: $numLines) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-line-clamp: $numLines;
+    -webkit-box-orient: vertical;
+  }
 }
 
 @mixin truncate($truncation-boundary) {
-    max-width: $truncation-boundary;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @mixin pseudo($display: block, $pos: absolute, $content: '') {
-    content: $content;
-    display: $display;
-    position: $pos;
+  content: $content;
+  display: $display;
+  position: $pos;
 }

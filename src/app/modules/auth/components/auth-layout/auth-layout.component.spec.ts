@@ -8,7 +8,7 @@ describe('AuthLayoutComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [],
-      declarations: [AuthLayoutComponent]
+      declarations: [AuthLayoutComponent],
     });
     fixture = TestBed.createComponent(AuthLayoutComponent);
     component = fixture.componentInstance;
@@ -17,5 +17,4 @@ describe('AuthLayoutComponent', () => {
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  
 });

@@ -1,6 +1,5 @@
-
 export interface AppErrorState {
-    errorMessage?: string;
-    isError: boolean;
-    isToasterError: boolean;
+  errorMessage?: string;
+  isError: boolean;
+  isToasterError: boolean;
 }

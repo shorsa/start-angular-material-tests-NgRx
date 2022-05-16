@@ -1,4 +1,4 @@
 export interface RequestSignInModel {
-    login: string;
-    password: string;
+  login: string;
+  password: string;
 }

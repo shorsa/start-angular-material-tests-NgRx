@@ -1,5 +1,5 @@
 export class RoutesConstants {
-  public static get INDEX(): string { return ''; }
+  public static readonly INDEX: string = '';
 
   /*----------------AUTH-------------------*/
   public static readonly AUTH_INDEX = 'auth';
@@ -8,5 +8,4 @@ export class RoutesConstants {
   public static readonly FORGOT_PASSWORD = 'forgot-password';
   public static readonly SET_NEW_PASSWORD = 'reset-password';
   public static readonly CONFIRM_EMAIL = 'set-password';
-  
 }

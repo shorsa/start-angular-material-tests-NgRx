@@ -8,6 +8,6 @@ import { AppErrorsReducer } from './errors.reducer';
   imports: [
     CommonModule,
     StoreModule.forFeature(AppReducersEnum.appErrors, AppErrorsReducer),
-  ]
+  ],
 })
-export class ErrorsStoreModule { }
+export class ErrorsStoreModule {}

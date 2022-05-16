@@ -6,12 +6,11 @@ import { AppReducersEnum } from 'src/app/core/store';
 import { AuthEffects } from './auth.effect';
 import { AuthReducer } from './auth.reducer';
 
-
 @NgModule({
   imports: [
     CommonModule,
     StoreModule.forFeature(AppReducersEnum.auth, AuthReducer),
-    EffectsModule.forFeature([AuthEffects])
+    EffectsModule.forFeature([AuthEffects]),
   ],
 })
-export class AuthStoreModule { }
+export class AuthStoreModule {}

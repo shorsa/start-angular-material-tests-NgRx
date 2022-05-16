@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
-import { RoutesConstants } from "../constants";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { RoutesConstants } from '../constants';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class NavigationHelper {
   constructor(private router: Router) {}

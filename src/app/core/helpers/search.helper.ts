@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class SearchHelper {
   private searchSubject: Subject<string>;
 
@@ -21,7 +20,7 @@ export class SearchHelper {
   setSearchSubscription(): Observable<string> {
     return this.searchSubject.pipe(
       debounceTime(1000),
-      switchMap(emittedValue => emittedValue.trim()),
+      switchMap((emittedValue) => emittedValue.trim()),
       distinctUntilChanged()
     );
   }

@@ -6,29 +6,31 @@ import { RequestSignInModel } from 'src/app/shared/models/auth/sign-in';
 import { FormGroupTyped } from 'src/typings';
 import { signIn } from '../../store/auth.actions';
 
-
 type FormGroupType = FormGroupTyped<RequestSignInModel>;
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent {
   formGroup!: FormGroupType;
   isSubmit: boolean = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private store$: Store
-  ) {
+  constructor(private formBuilder: FormBuilder, private store$: Store) {
     this.buildForm();
   }
 
   private buildForm(): void {
     this.formGroup = <FormGroupType>this.formBuilder.group({
-      login: ['', [Validators.required, Validators.pattern(PatternsConstants.PATTERN_EMAIL)]],
-      password: ['', [Validators.required]]
+      login: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(PatternsConstants.PATTERN_EMAIL),
+        ],
+      ],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -40,5 +42,4 @@ export class SignInComponent {
     const model: RequestSignInModel = this.formGroup.value;
     this.store$.dispatch(signIn({ payload: model }));
   }
-
 }

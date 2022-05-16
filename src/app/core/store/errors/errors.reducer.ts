@@ -5,23 +5,18 @@ import * as actions from './error.actions';
 export const initialState: AppErrorState = {
   errorMessage: undefined,
   isError: false,
-  isToasterError: false
+  isToasterError: false,
 };
 
 export const AppErrorsReducer: ActionReducer<AppErrorState, Action> =
   createReducer(
     initialState,
-    on(
-      actions.error,
-      (state: AppErrorState, { payload }): AppErrorState => {
-        const { errorMessage, isError, isToasterError } = payload;
-        return ({ ...state, errorMessage, isError, isToasterError });
-      }
-    ),
+    on(actions.error, (state: AppErrorState, { payload }): AppErrorState => {
+      const { errorMessage, isError, isToasterError } = payload;
+      return { ...state, errorMessage, isError, isToasterError };
+    }),
     on(
       actions.clearError,
-      (state: AppErrorState): AppErrorState =>
-        ({ ...state, ...initialState })
+      (state: AppErrorState): AppErrorState => ({ ...state, ...initialState })
     )
   );
-

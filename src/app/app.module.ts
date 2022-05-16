@@ -15,7 +15,6 @@ import { metaReducers, reducers } from './core/store/app-meta.reducer';
 import { ErrorsStoreModule } from './core/store/errors/errors.store.module';
 import { AuthStoreModule } from './modules/auth/store/auth.store.module';
 
-
 export let InjectorInstance: Injector;
 
 const STORE = [
@@ -23,14 +22,15 @@ const STORE = [
   ErrorsStoreModule,
 
   StoreModule.forRoot(reducers, { metaReducers }),
-  StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+  StoreDevtoolsModule.instrument({
+    maxAge: 25,
+    logOnly: environment.production,
+  }),
   EffectsModule.forRoot([]),
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     STORE,
     BrowserModule,
@@ -39,7 +39,7 @@ const STORE = [
       positionClass: 'toast-top-right',
       closeButton: true,
       tapToDismiss: true,
-      progressBar: true
+      progressBar: true,
     }),
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -48,6 +48,6 @@ const STORE = [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

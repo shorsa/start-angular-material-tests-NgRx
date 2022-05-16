@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-  ],
-  exports: []
+  imports: [CommonModule],
+  exports: [],
 })
-export class SharedPipeModule { }
+export class SharedPipeModule {}
