@@ -4,7 +4,7 @@ import { RoutesConstants } from 'src/app/core/constants/routes.constants';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: RoutesConstants.INDEX,
     component: AuthLayoutComponent,

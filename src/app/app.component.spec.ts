@@ -1,35 +1,35 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
+fdescribe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(() => {
+    const toastrServiceStub = () => ({ error: (errorMessage: string) => ({}) });
+    const storeStub = () => ({
+      select: () => ({ pipe: () => ({ subscribe: (f:any) => f({}) }) }),
+      dispatch: () => ({})
+    });
+    TestBed.configureTestingModule({
+      declarations: [AppComponent],
+      providers: [
+        { provide: ToastrService, useFactory: toastrServiceStub },
+        { provide: Store, useFactory: storeStub }
+      ]
+    });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('can load instance', () => {
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'Angular-Material-NgRx'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Angular-Material-NgRx');
+  it(`title has default value`, () => {
+    expect(component.title).toEqual(`Angular-Material-NgRx`);
   });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Angular-Material-NgRx app is running!');
- 4 });
 });

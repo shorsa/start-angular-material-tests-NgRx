@@ -22,5 +22,5 @@ export class LocalStorageHelper {
 
 export interface LocalStorageTokenData {
   accessToken: string;
-  refreshToken: string;
+  refreshToken?: string;
 }

@@ -1,19 +1,18 @@
-import { NavigationExtras, Router } from '@angular/router';
-import { InjectorInstance } from 'src/app/app.module';
-import { RoutesConstants } from '../constants';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { RoutesConstants } from "../constants";
 
+@Injectable({
+  providedIn: "root",
+})
 export class NavigationHelper {
+  constructor(private router: Router) {}
 
-  public static toAuth(route?: string): void {
+  toAuth(route?: string): void {
     if (!route) {
-      this.navigate([RoutesConstants.AUTH_INDEX]);
+      this.router.navigate([RoutesConstants.AUTH_INDEX]);
       return;
     }
-    this.navigate([RoutesConstants.AUTH_INDEX].concat(route));
-  }
-
-  public static navigate(route: string[], params?: NavigationExtras): void {
-    const router: Router = InjectorInstance.get(Router);
-    router.navigate(route, params);
+    this.router.navigate([RoutesConstants.AUTH_INDEX].concat(route));
   }
 }

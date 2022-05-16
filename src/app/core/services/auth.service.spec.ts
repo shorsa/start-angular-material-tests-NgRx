@@ -1,35 +1,87 @@
-import { AuthService } from 'src/app/core/services/auth.service';
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { HttpErrorResponse } from "@angular/common/http";
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+  TestRequest,
+} from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
+import { RequestSignInModel, ResponseSignInModel } from "src/app/shared/models/auth/sign-in";
+import { ApiEndpointsConstants } from "../constants";
+import { ApiEndpointHelper } from "../helpers/api-endpoint.helper";
+import { AuthService } from "./auth.service";
 
-describe('AuthService', () => {
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [
-//         RouterTestingModule
-//       ],
-//       declarations: [
-//         AppComponent
-//       ],
-//     }).compileComponents();
-//   });
+fdescribe("AuthService", () => {
+  let service: AuthService;
+  let httpTestingController: HttpTestingController;
 
-//   it('should create the app', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-//     expect(app).toBeTruthy();
-//   });
+  const requestSignInModel: RequestSignInModel = {
+    login: "login",
+    password: "123123",
+  };
 
-//   it(`should have as title 'Angular-Material-NgRx'`, () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.componentInstance;
-//     expect(app.title).toEqual('Angular-Material-NgRx');
-//   });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [AuthService],
+    });
+    service = TestBed.inject(AuthService);
+    httpTestingController = TestBed.inject(HttpTestingController);
+  });
 
-//   it('should render title', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     fixture.detectChanges();
-//     const compiled = fixture.nativeElement as HTMLElement;
-//     expect(compiled.querySelector('.content span')?.textContent).toContain('Angular-Material-NgRx app is running!');
-//  4 });
+  it("can load instance", () => {
+    expect(service).toBeTruthy();
+  });
+
+  describe("signIn", () => {
+    it("should return accessToken", () => {
+      const responseSignInModelStub: ResponseSignInModel = {
+        accessToken: "token",
+      };
+
+      service.signIn(requestSignInModel).subscribe({
+        next: (res) => {
+          expect(res).toEqual(responseSignInModelStub);
+        },
+        error: (error) => {
+          expect(error).toBeFalsy();
+        },
+      });
+
+      const req: TestRequest = httpTestingController.expectOne(
+        ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
+      );
+
+      expect(req.request.method).toEqual("POST");
+      req.flush(responseSignInModelStub);
+    });
+
+    it("should return error", () => {
+      const errorResponse = new HttpErrorResponse({
+        status: 404,
+        statusText: "Not Found",
+      });
+
+      service.signIn(requestSignInModel).subscribe({
+        next: () => {
+          fail();
+        },
+        error: (error: HttpErrorResponse) => {
+          expect(error.statusText).toBe(errorResponse.statusText);
+          expect(error.status).toBe(errorResponse.status);
+          expect(error.url).toBe(req.request.url);
+        },
+      });
+      const req: TestRequest = httpTestingController.expectOne(
+        ApiEndpointHelper.get(ApiEndpointsConstants.AUTH_SIGN_IN)
+      );
+
+      expect(req.request.method).toEqual("POST");
+
+      req.flush(requestSignInModel, errorResponse);
+    });
+
+    afterEach(() => {
+      httpTestingController.verify();
+    });
+  });
 });
