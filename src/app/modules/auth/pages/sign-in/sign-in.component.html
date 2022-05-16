@@ -1,20 +1,21 @@
 <h1>SignIn</h1>
-<form [formGroup]="formGroup"
-  (keyup.enter)="signIn()">
-  <app-input type="email"
+<form [formGroup]="formGroup" (keyup.enter)="signIn()">
+  <app-input
+    type="email"
     label="login"
     [attemptSubmit]="isSubmit"
     placeholder="enter"
     autocomplete="on"
     [isClearButton]="true"
-    [control]="formGroup.get('login')"></app-input>
-  <app-input label="Password"
-    [type]="'password'"
+    [control]="formGroup.get('login')"
+  ></app-input>
+  <app-input
+    label="Password"
+    type="password"
     autocomplete="off"
     [attemptSubmit]="isSubmit"
     [attemptSubmit]=""
-    [control]="formGroup.get('password')"></app-input>
-  <button mat-raised-button
-    color="primary"
-    (click)="signIn()">Primary</button>
+    [control]="formGroup.get('password')"
+  ></app-input>
+  <button mat-raised-button color="primary" (click)="signIn()">Primary</button>
 </form>
