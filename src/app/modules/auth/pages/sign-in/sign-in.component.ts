@@ -25,10 +25,7 @@ export class SignInComponent {
     this.formGroup = <FormGroupType>this.formBuilder.group({
       login: [
         '',
-        [
-          Validators.required,
-          Validators.pattern(PatternsConstants.PATTERN_EMAIL),
-        ],
+        [Validators.required, Validators.pattern(PatternsConstants.PATTERN_EMAIL)],
       ],
       password: ['', [Validators.required]],
     });

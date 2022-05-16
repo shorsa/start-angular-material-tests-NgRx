@@ -1,10 +1,5 @@
 import { Directive } from '@angular/core';
-import {
-  FormControl,
-  NG_VALIDATORS,
-  ValidationErrors,
-  Validator,
-} from '@angular/forms';
+import { FormControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
 
 @Directive({
   selector: '[telephoneNumber]',
@@ -21,8 +16,7 @@ export class TelephoneNumberValidatorsDirective implements Validator {
     const isValidPhoneNumber = /^\d{3,3}-\d{3,3}-\d{3,3}$/.test(c.value);
     const message = {
       telephoneNumber: {
-        message:
-          'The phone number mu st be valid (XXX-XXX-XXX, where X is a digit)',
+        message: 'The phone number mu st be valid (XXX-XXX-XXX, where X is a digit)',
       },
     };
     return isValidPhoneNumber ? null : message;

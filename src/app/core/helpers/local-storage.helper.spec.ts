@@ -1,8 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {
-  LocalStorageHelper,
-  LocalStorageTokenData,
-} from './local-storage.helper';
+import { LocalStorageHelper, LocalStorageTokenData } from './local-storage.helper';
 
 fdescribe('LocalStorageHelper', () => {
   let service: LocalStorageHelper;
@@ -34,25 +31,17 @@ fdescribe('LocalStorageHelper', () => {
 
     expect(service.getLocalStorageToken).not.toBeUndefined();
     expect(service.getLocalStorageToken).toEqual(tokenModel);
-    expect(service.getLocalStorageToken?.accessToken).toBe(
-      tokenModel.accessToken
-    );
-    expect(service.getLocalStorageToken?.refreshToken).toBe(
-      tokenModel.refreshToken
-    );
+    expect(service.getLocalStorageToken?.accessToken).toBe(tokenModel.accessToken);
+    expect(service.getLocalStorageToken?.refreshToken).toBe(tokenModel.refreshToken);
   });
 
   it('should be set accessToken', () => {
     service.setLocalStorageToken = tokenModel;
 
     expect(service.getLocalStorageToken).toEqual(tokenModel);
-    expect(service.getLocalStorageToken?.accessToken).toBe(
-      tokenModel.accessToken
-    );
+    expect(service.getLocalStorageToken?.accessToken).toBe(tokenModel.accessToken);
     expect(service.getLocalStorageToken?.accessToken).toBeDefined();
-    expect(service.getLocalStorageToken?.refreshToken).toBe(
-      tokenModel.refreshToken
-    );
+    expect(service.getLocalStorageToken?.refreshToken).toBe(tokenModel.refreshToken);
   });
 
   it('should be remove token data', () => {

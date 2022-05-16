@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthenticationHelper } from './authentication.helper';
-import {
-  LocalStorageHelper,
-  LocalStorageTokenData,
-} from './local-storage.helper';
+import { LocalStorageHelper, LocalStorageTokenData } from './local-storage.helper';
 import { NavigationHelper } from './navigation.helper';
 
 fdescribe('AuthenticationHelper', () => {
@@ -28,8 +25,7 @@ fdescribe('AuthenticationHelper', () => {
   beforeEach(() => {
     localStorageHelperStub = () => ({
       getLocalStorageToken: undefined,
-      setLocalStorageToken: (key: string, data: string) =>
-        (localStore[key] = data),
+      setLocalStorageToken: (key: string, data: string) => (localStore[key] = data),
       removeLocalStorageToken: () => ({}),
     });
 
@@ -99,13 +95,9 @@ fdescribe('AuthenticationHelper', () => {
     it('makes expected calls', () => {
       const localStorageHelperStub: LocalStorageHelper =
         TestBed.inject(LocalStorageHelper);
-      const navigationHelperStub: NavigationHelper =
-        TestBed.inject(NavigationHelper);
+      const navigationHelperStub: NavigationHelper = TestBed.inject(NavigationHelper);
 
-      spyOn(
-        localStorageHelperStub,
-        'removeLocalStorageToken'
-      ).and.callThrough();
+      spyOn(localStorageHelperStub, 'removeLocalStorageToken').and.callThrough();
       spyOn(navigationHelperStub, 'toAuth').and.callThrough();
 
       service.signOut();

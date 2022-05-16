@@ -14,10 +14,7 @@ fdescribe('NavigationHelper', () => {
     const routerStub = () => ({ navigate: (array: any) => ({}) });
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
-      providers: [
-        NavigationHelper,
-        { provide: Router, useFactory: routerStub },
-      ],
+      providers: [NavigationHelper, { provide: Router, useFactory: routerStub }],
     });
     service = TestBed.inject(NavigationHelper);
     // location = TestBed.inject(Location);

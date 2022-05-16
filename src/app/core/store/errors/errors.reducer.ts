@@ -8,15 +8,14 @@ export const initialState: AppErrorState = {
   isToasterError: false,
 };
 
-export const AppErrorsReducer: ActionReducer<AppErrorState, Action> =
-  createReducer(
-    initialState,
-    on(actions.error, (state: AppErrorState, { payload }): AppErrorState => {
-      const { errorMessage, isError, isToasterError } = payload;
-      return { ...state, errorMessage, isError, isToasterError };
-    }),
-    on(
-      actions.clearError,
-      (state: AppErrorState): AppErrorState => ({ ...state, ...initialState })
-    )
-  );
+export const AppErrorsReducer: ActionReducer<AppErrorState, Action> = createReducer(
+  initialState,
+  on(actions.error, (state: AppErrorState, { payload }): AppErrorState => {
+    const { errorMessage, isError, isToasterError } = payload;
+    return { ...state, errorMessage, isError, isToasterError };
+  }),
+  on(
+    actions.clearError,
+    (state: AppErrorState): AppErrorState => ({ ...state, ...initialState })
+  )
+);

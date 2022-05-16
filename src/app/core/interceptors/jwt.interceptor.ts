@@ -13,9 +13,7 @@ import { AuthService } from './../services/auth.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
-    null
-  );
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(
     private readonly authHelper: AuthenticationHelper,

@@ -12,10 +12,7 @@ import * as authActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private readonly authService: AuthService
-  ) {}
+  constructor(private actions$: Actions, private readonly authService: AuthService) {}
 
   signIn$ = createEffect(() => {
     return this.actions$.pipe(

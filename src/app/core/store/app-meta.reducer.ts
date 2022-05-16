@@ -1,9 +1,4 @@
-import {
-  Action,
-  ActionReducer,
-  ActionReducerMap,
-  MetaReducer,
-} from '@ngrx/store';
+import { Action, ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import {
   AuthReducer,
   initialState as authInitialState,
@@ -25,9 +20,7 @@ const initialAppState: AppState = {
   appErrors: errorsInitialState,
 };
 
-export function logger(
-  reducer: ActionReducer<AppState>
-): ActionReducer<AppState> {
+export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return (state: AppState = initialAppState, action: Action): any => {
     console.log('action', action);
     return reducer(state, action);

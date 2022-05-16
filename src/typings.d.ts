@@ -15,9 +15,7 @@ export interface AbstractControlTyped<T> extends AbstractControl {
   valueChanges: Observable<T>;
   readonly status: STATUSs;
   statusChanges: Observable<STATUS>;
-  get<V = unknown>(
-    path: Array<string | number> | string
-  ): AbstractControlTyped<V> | null;
+  get<V = unknown>(path: Array<string | number> | string): AbstractControlTyped<V> | null;
   setValue<V>(
     value: V extends T ? V : never,
     options?: { onlySelf?: boolean; emitEvent?: boolean }
@@ -38,9 +36,7 @@ interface FormControlTyped<T> extends FormControl {
   valueChanges: Observable<T>;
   readonly status: STATUSs;
   statusChanges: Observable<STATUS>;
-  get<V = unknown>(
-    path: Array<string | number> | string
-  ): AbstractControlTyped<V> | null;
+  get<V = unknown>(path: Array<string | number> | string): AbstractControlTyped<V> | null;
   setValue<V>(
     value: V extends T ? V : never,
     options?: { onlySelf?: boolean; emitEvent?: boolean }
@@ -66,17 +62,11 @@ interface FormGroupTyped<T> extends FormGroup {
     name: string,
     control: AbstractControlTyped<V>
   ): AbstractControlTyped<V>;
-  addControl<P extends keyof T>(
-    name: P,
-    control: AbstractControlTyped<T[P]>
-  ): void;
+  addControl<P extends keyof T>(name: P, control: AbstractControlTyped<T[P]>): void;
   addControl<V = any>(name: string, control: AbstractControlTyped<V>): void;
   removeControl(name: keyof T): void;
   removeControl(name: string): void;
-  setControl<P extends keyof T>(
-    name: P,
-    control: AbstractControlTyped<T[P]>
-  ): void;
+  setControl<P extends keyof T>(name: P, control: AbstractControlTyped<T[P]>): void;
   setControl<V = any>(name: string, control: AbstractControlTyped<V>): void;
   contains(name: keyof T): boolean;
   contains(name: string): boolean;
@@ -87,9 +77,7 @@ interface FormGroupTyped<T> extends FormGroup {
   valueChanges: Observable<T>;
   readonly status: STATUSs;
   statusChanges: Observable<STATUS>;
-  get<V = unknown>(
-    path: Array<string | number> | string
-  ): AbstractControlTyped<V> | null;
+  get<V = unknown>(path: Array<string | number> | string): AbstractControlTyped<V> | null;
   setValue<V>(
     value: V extends T ? V : never,
     options?: { onlySelf?: boolean; emitEvent?: boolean }
@@ -117,9 +105,7 @@ interface FormArrayTyped<T> extends FormArray {
   valueChanges: Observable<T[]>;
   readonly status: STATUSs;
   statusChanges: Observable<STATUS>;
-  get<V = unknown>(
-    path: Array<string | number> | string
-  ): AbstractControlTyped<V> | null;
+  get<V = unknown>(path: Array<string | number> | string): AbstractControlTyped<V> | null;
   setValue<V>(
     value: V extends T[] ? V : never,
     options?: { onlySelf?: boolean; emitEvent?: boolean }

@@ -63,10 +63,7 @@ export class InputComponent
   isPasswordType: boolean = false;
   inputType: InputType = 'text';
 
-  constructor(
-    private injector: Injector,
-    private changeDetector: ChangeDetectorRef
-  ) {
+  constructor(private injector: Injector, private changeDetector: ChangeDetectorRef) {
     super();
   }
 

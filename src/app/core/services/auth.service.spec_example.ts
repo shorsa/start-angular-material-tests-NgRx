@@ -62,9 +62,7 @@ fdescribe('AuthService', () => {
       service.signIn(model).subscribe({
         next: (res) => {
           console.log(res);
-          expect(res)
-            .withContext('service returned accessToken')
-            .toEqual(response);
+          expect(res).withContext('service returned accessToken').toEqual(response);
         },
         error: fail,
       });

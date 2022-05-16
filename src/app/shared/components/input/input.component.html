@@ -50,8 +50,5 @@
       {{ showPassword ? 'visibility' : 'visibility_off' }}
     </mat-icon>
   </mat-form-field>
-  <app-form-error
-    *ngIf="attemptSubmit && control"
-    [control]="control"
-  ></app-form-error>
+  <app-form-error *ngIf="attemptSubmit && control" [control]="control"></app-form-error>
 </div>

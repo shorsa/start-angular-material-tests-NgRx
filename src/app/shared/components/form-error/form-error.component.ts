@@ -23,12 +23,9 @@ export class FormErrorComponent implements AfterViewChecked {
   private control!: AbstractControlDirective | AbstractControl;
 
   private readonly errorMessage = {
-    pattern: (params: ValidationErrors): string =>
-      this.getPatternMassage(params),
-    min: (params: ValidationErrors): string =>
-      `The minimum value must be ${params.min}`,
-    max: (params: ValidationErrors): string =>
-      `The maximum value must be ${params.max}`,
+    pattern: (params: ValidationErrors): string => this.getPatternMassage(params),
+    min: (params: ValidationErrors): string => `The minimum value must be ${params.min}`,
+    max: (params: ValidationErrors): string => `The maximum value must be ${params.max}`,
     mustMatch: (): string => 'Passwords do not match',
     required: () => 'This field is required',
     minlength: (params: ValidationErrors) =>
@@ -50,10 +47,7 @@ export class FormErrorComponent implements AfterViewChecked {
     return Object.keys(this.control.errors).map((field) => {
       console.log(field);
 
-      return this.getMessage(
-        field,
-        (this.control.errors as ValidationErrors)[field]
-      );
+      return this.getMessage(field, (this.control.errors as ValidationErrors)[field]);
     });
   }
 

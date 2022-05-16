@@ -5,8 +5,7 @@ import { RoutesConstants } from './core/constants';
 const routes: Routes = [
   {
     path: RoutesConstants.AUTH_INDEX,
-    loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: RoutesConstants.INDEX,

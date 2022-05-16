@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
-import {
-  LocalStorageHelper,
-  LocalStorageTokenData,
-} from './local-storage.helper';
+import { LocalStorageHelper, LocalStorageTokenData } from './local-storage.helper';
 import { NavigationHelper } from './navigation.helper';
 
 @Injectable({
@@ -69,8 +66,7 @@ export class AuthenticationHelper {
   }
 
   getUserId(): string | null {
-    const userId =
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier';
+    const userId = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier';
     const token: string | undefined = this.getAccessToken();
     try {
       if (!token) return null;
@@ -96,8 +92,7 @@ export class AuthenticationHelper {
   }
 
   getUserName(): string | null {
-    const userName =
-      'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name';
+    const userName = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name';
     const token: string | undefined = this.getAccessToken();
     try {
       if (!token) return null;
@@ -110,8 +105,7 @@ export class AuthenticationHelper {
   }
 
   getUserRole(): string | null {
-    const claimsRole =
-      'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
+    const claimsRole = 'http://schemas.microsoft.com/ws/2008/06/identity/claims/role';
     const token: string | undefined = this.getAccessToken();
     try {
       if (!token) return null;
